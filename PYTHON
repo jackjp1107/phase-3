@@ -1,0 +1,82 @@
+from flask import Flask, render_template
+import pandas as pd
+import pickle
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+
+app = Flask(__name__)
+
+# --- Configuration ---
+MODEL_PATH = 'model/trained_model.pkl'
+PREDICTION_STEPS = 30  # Number of future time steps to predict
+
+# --- Load the trained model ---
+def load_model(model_path):
+    try:
+        with open(model_path, 'rb') as file:
+            model = pickle.load(file)
+        return model
+    except FileNotFoundError:
+        print(f"Error: Model file not found at {model_path}")
+        return None
+    except Exception as e:
+        print(f"Error loading model: {e}")
+        return None
+
+trained_model = load_model(MODEL_PATH)
+
+# --- Function to generate predictions (adapt to your actual prediction logic) ---
+def generate_predictions(model, steps):
+    if model is None:
+        return None, None
+    # This is a placeholder - adapt to your model's predict method
+    # Assuming your model has a 'get_forecast' method similar to SARIMA
+    try:
+        forecast = model.get_forecast(steps=steps)
+        predictions = forecast.predicted_mean
+        last_date = model.model.endog.index[-1]
+        future_dates = pd.date_range(start=last_date, periods=steps + 1, freq=model.model.index.freq)[1:]
+        predictions.index = future_dates
+        return predictions, model.model.endog
+    except AttributeError:
+        print("Error: Model does not have a 'get_forecast' method. Adapt prediction logic.")
+        return None, None
+    except Exception as e:
+        print(f"Error generating predictions: {e}")
+        return None, None
+
+# --- Function to generate a plot as a base64 encoded image ---
+def create_plot(historical_data, predictions):
+    plt.figure(figsize=(10, 6))
+    plt.plot(historical_data, label='Historical Data')
+    plt.plot(predictions, label='Predictions', color='red')
+    plt.title('Energy Consumption Forecast')
+    plt.xlabel('Time')
+    plt.ylabel('Energy Consumption')
+    plt.legend()
+    plt.grid(True)
+
+    # Save plot to a BytesIO object
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    plt.close()
+    return plot_url
+
+# --- Flask Routes ---
+@app.route('/')
+def index():
+    predictions, historical_data = generate_predictions(trained_model, PREDICTION_STEPS)
+    plot_url = None
+    if predictions is not None and historical_data is not None:
+        plot_url = create_plot(historical_data, predictions)
+        predictions_table = predictions.to_frame(name='Predicted Consumption').to_html()
+    else:
+        predictions_table = "<p>Could not generate predictions.</p>"
+
+    return render_template('index.html', predictions_table=predictions_table, plot_url=plot_url)
+
+if __name__ == '__main__':
+    app.run(debug=True)
