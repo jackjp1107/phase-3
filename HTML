@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Grid Energy Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Grid Energy Consumption Prediction</h1>
+
+        {% if plot_url %}
+        <div class="prediction-plot">
+            <h2>Forecasted Energy Consumption</h2>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Energy Consumption Forecast">
+        </div>
+        {% endif %}
+
+        <div class="prediction-table">
+            <h2>Predicted Values</h2>
+            {{ predictions_table|safe }}
+        </div>
+    </div>
+</body>
+</html>
