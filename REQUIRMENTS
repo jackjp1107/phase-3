@@ -1,0 +1,64 @@
+| **Category**                | **Tools/Libraries**                        |
+| --------------------------- | ------------------------------------------ |
+| **Programming Language**    | Python 3.7 or later                        |
+| **Data Manipulation**       | Pandas, NumPy                              |
+| **Visualization**           | Matplotlib, Seaborn                        |
+| **Statistical Modeling**    | Statsmodels (for ARIMA, SARIMA)            |
+| **Machine Learning**        | Scikit-learn (for ML models)               |
+| **Deep Learning**           | TensorFlow, Keras, PyTorch (for LSTM, CNN) |
+| **Time Series Forecasting** | Darts (for unified time series models)     |
+| **Database**                | InfluxDB (for time series data storage)    |
+| **Development Environment** | Jupyter Notebook, VS Code, PyCharm         |
+
+
+
+| **Data Type**           | **Description**                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------- |
+| **Energy Consumption**  | Time-stamped data on energy usage (e.g., hourly, daily)                                      |
+| **Weather Data**        | Temperature, humidity, wind speed, etc., affecting energy demand                             |
+| **Calendar Data**       | Information on holidays, weekends, and seasons                                               |
+| **Economic Indicators** | Data on industrial activity, population, and economic factors influencing energy consumption |
+| **Data Sources**        | Smart meters, weather APIs, government databases, utility companies, and open datasets       |
+
+
+
+
+| **Aspect**              | **Details**                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| **Data Preprocessing**  | Handling missing values, outlier detection, normalization, and feature engineering |
+| **Modeling Techniques** | ARIMA, SARIMA, LSTM, Prophet, Hybrid models                                        |
+| **Evaluation Metrics**  | RMSE, MAE, MAPE, R²                                                                |
+| **Cross-Validation**    | Time series cross-validation techniques (e.g., walk-forward validation)            |
+| **Model Deployment**    | Flask/Django APIs, cloud services (AWS SageMaker, Google AI Platform)              |
+
+
+| **Component**        | **Tools/Technologies**                    |
+| -------------------- | ----------------------------------------- |
+| **Database**         | InfluxDB (optimized for time series data) |
+| **Cloud Platforms**  | AWS, Google Cloud, Azure                  |
+| **Version Control**  | Git, GitHub/GitLab                        |
+| **Deployment Tools** | Docker, Kubernetes, CI/CD pipelines       |
+| **Monitoring Tools** | Grafana, Prometheus, ELK Stack            |
+
+
+| **Tool**             | **Purpose**                                                      |
+| -------------------- | ---------------------------------------------------------------- |
+| **Dash/Streamlit**   | Building interactive dashboards for real-time data visualization |
+| **Grafana**          | Real-time monitoring and visualization of time series data       |
+| **Power BI/Tableau** | Business-oriented analytics and reporting                        |
+
+
+
+| **Category**         | **Tools/Practices**                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| **Unit Testing**     | Pytest, unittest                                                                       |
+| **Model Deployment** | Flask/Django APIs, cloud services (AWS SageMaker, Google AI Platform)                  |
+| **Monitoring**       | Implement logging and alerting mechanisms to monitor model performance post-deployment |
+
+
+
+| **Resource**        | **Description**                                                              |
+| ------------------- | ---------------------------------------------------------------------------- |
+| **Coursera**        | Courses on time series forecasting and machine learning                      |
+| **Kaggle**          | Datasets and notebooks for practical experience                              |
+| **Research Papers** | Stay updated with the latest methodologies in energy consumption forecasting |
